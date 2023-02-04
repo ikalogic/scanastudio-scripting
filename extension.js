@@ -17,7 +17,7 @@ function activate(context) {
 
     vscode.workspace.getConfiguration()
         .update('editor.suggest.showWords', false, vscode.ConfigurationTarget.Global);
-    
+
     var obj = JSON.parse(fs.readFileSync(context.extensionPath + '/resources/scanastudio.templates.json', 'utf8'));
     //console.log(obj);
     for (var i = 0; i < obj.length; i++) {
@@ -94,7 +94,7 @@ function activate(context) {
             // get all text until the `position` and check if it reads `console.`
             // and if so then complete if `log`, `warn`, and `error`
             const linePrefix = document.lineAt(position).text.substr(0, position.character);
-            if ((linePrefix.endsWith('ScanaStudio.')) || (linePrefix.endsWith('scanastudio.'))) {
+            if ((linePrefix.toLowerCase().indexOf("scanastudio.") >= 0)) {
 
                 var completion_items = [];
                 var obj = JSON.parse(fs.readFileSync(context.extensionPath + '/resources/scanastudio.snippets.json', 'utf8'));
@@ -123,7 +123,7 @@ function activate(context) {
             }
         }
     },
-        '.' // triggered whenever a '.' is being typed
+        '.', // triggered whenever a '.' is being typed
     );
 
     context.subscriptions.push(provider1, provider2);
