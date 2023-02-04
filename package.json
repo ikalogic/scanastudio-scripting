@@ -2,9 +2,9 @@
   "name": "scanastudio-scripting",
   "displayName": "ScanaStudio-Scripting",
   "publisher": "Ikalogic",
-  "repository" : "https://github.com/ikalogic/scanastudio-scripting",
+  "repository": "https://github.com/ikalogic/scanastudio-scripting",
   "description": "ScanaStudio scripting snippets",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.74.0"
   },
