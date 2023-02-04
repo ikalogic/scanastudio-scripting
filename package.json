@@ -2,7 +2,11 @@
   "name": "scanastudio-scripting",
   "displayName": "ScanaStudio-Scripting",
   "publisher": "Ikalogic",
-  "repository": "https://github.com/ikalogic/scanastudio-scripting",
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ikalogic/scanastudio-scripting"
+  },
   "description": "ScanaStudio scripting snippets",
   "version": "0.1.0",
   "engines": {
