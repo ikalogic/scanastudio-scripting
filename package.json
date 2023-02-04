@@ -1,6 +1,8 @@
 {
   "name": "scanastudio-scripting",
   "displayName": "ScanaStudio-Scripting",
+  "publisher": "Ikalogic",
+  "repository" : "https://github.com/ikalogic/scanastudio-scripting",
   "description": "ScanaStudio scripting snippets",
   "version": "0.0.1",
   "engines": {
@@ -10,7 +12,9 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onLanguage:javascript",
+    "onLanguage:js",
+    "onLanguage:ts"
   ],
   "main": "./extension.js",
   "scripts": {
