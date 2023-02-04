@@ -1,0 +1,690 @@
+[
+
+	{"desc":"Loads a builder object from another script",
+	"prefix": "load_builder_object",
+	"context": "Signal builder",
+	"body": [
+		"load_builder_object(${1:script_file_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add samples to the pattern or to the workspace",
+	"prefix": "builder_add_samples",
+	"context": "Signal builder",
+	"body": [
+		"builder_add_samples(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:logic_level} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:samples_count} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Adds cycles to the pattern or to the workspace (cycle = Logic High period followed by Logic Low period).",
+	"prefix": "builder_add_cycles",
+	"context": "Signal builder",
+	"body": [
+		"builder_add_cycles(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:duty_cycle} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,",
+		"${3:samples_per_cycle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${4:cycles_count} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Return the number of added (built) samples for a channel",
+	"prefix": "builder_get_samples_acc",
+	"context": "Signal builder",
+	"body": [
+		"builder_get_samples_acc(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Return the current sampling rate of the workspace",
+	"prefix": "builder_get_sample_rate",
+	"context": "Signal builder",
+	"body": [
+		"builder_get_sample_rate()"
+	]}
+	,
+	{"desc":"Return the maximum number of samples that can be built",
+	"prefix": "builder_get_maximum_samples_count",
+	"context": "Signal builder",
+	"body": [
+		"builder_get_maximum_samples_count()"
+	]}
+	,
+	{"desc":"Returns true if the script should abort",
+	"prefix": "abort_is_requested",
+	"context": "Global",
+	"body": [
+		"abort_is_requested()"
+	]}
+	,
+	{"desc":"Use this function to report the progress of the current task",
+	"prefix": "report_progress",
+	"context": "Global",
+	"body": [
+		"report_progress(${1:progress_0_to_100} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Write information text to ScanaStudio console",
+	"prefix": "console_info_msg",
+	"context": "Global",
+	"body": [
+		"console_info_msg(${1:msg} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:sample} $BLOCK_COMMENT_START int [default = -1] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Write warning message to ScanaStudio console",
+	"prefix": "console_warning_msg",
+	"context": "Global",
+	"body": [
+		"console_warning_msg(${1:msg} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:sample} $BLOCK_COMMENT_START int [default = -1] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Write error message to ScanaStudio console",
+	"prefix": "console_error_msg",
+	"context": "Global",
+	"body": [
+		"console_error_msg(${1:msg} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:sample} $BLOCK_COMMENT_START int [default = -1] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the current version of ScanaStudio scripting API",
+	"prefix": "get_api_version",
+	"context": "Global",
+	"body": [
+		"get_api_version()"
+	]}
+	,
+	{"desc":"Returns the name of the Logic Analyzer device attached to the ScanaStudio workspace",
+	"prefix": "get_device_name",
+	"context": "Global",
+	"body": [
+		"get_device_name()"
+	]}
+	,
+	{"desc":"Returns the number of channels for the device attached to the ScanaStudio workspace",
+	"prefix": "get_device_channels_count",
+	"context": "Global",
+	"body": [
+		"get_device_channels_count()"
+	]}
+	,
+	{"desc":"Returns the the sampling rate that was used to capture signals.",
+	"prefix": "get_capture_sample_rate",
+	"context": "Global",
+	"body": [
+		"get_capture_sample_rate()"
+	]}
+	,
+	{"desc":"Sets the unique instance name for that script in current context.",
+	"prefix": "set_script_instance_name",
+	"context": "Global",
+	"body": [
+		"set_script_instance_name(${1:script_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Convert a floating number to engineering notation, e.g. convert 0.01 to 10m.",
+	"prefix": "engineering_notation",
+	"context": "Global",
+	"body": [
+		"engineering_notation(${1:number} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,${2:digits} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Import content of GUI from another decoder",
+	"prefix": "gui_import_from_decoder",
+	"context": "Global",
+	"body": [
+		"gui_import_from_decoder(${1:script_file_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Import content of GUI from another trigger sequence generator",
+	"prefix": "gui_import_from_trigger",
+	"context": "Global",
+	"body": [
+		"gui_import_from_trigger(${1:script_file_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Import content of GUI from another signal builder",
+	"prefix": "gui_import_from_builder",
+	"context": "Global",
+	"body": [
+		"gui_import_from_builder(${1:script_file_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add channel selector GUI element",
+	"prefix": "gui_add_ch_selector",
+	"context": "Global",
+	"body": [
+		"gui_add_ch_selector(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:new_channel_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add engineering form input box GUI element (using units and prefixes, e.g. 15us or 10MHz)",
+	"prefix": "gui_add_engineering_form_input_box",
+	"context": "Global",
+	"body": [
+		"gui_add_engineering_form_input_box(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:min_value} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,",
+		"${4:max_value} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,",
+		"${5:default_value} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,",
+		"${6:unit} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add combo box GUI element",
+	"prefix": "gui_add_combo_box",
+	"context": "Global",
+	"body": [
+		"gui_add_combo_box(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add items to the last (previously added) combo box",
+	"prefix": "gui_add_item_to_combo_box",
+	"context": "Global",
+	"body": [
+		"gui_add_item_to_combo_box(${1:item_txt} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:is_selected} $BLOCK_COMMENT_START bool [default = false] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add BAUD rate selector GUI element with automatic BAUD rate detection feature",
+	"prefix": "gui_add_baud_selector",
+	"context": "Global",
+	"body": [
+		"gui_add_baud_selector(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:default_value} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add text input GUI element",
+	"prefix": "gui_add_text_input",
+	"context": "Global",
+	"body": [
+		"gui_add_text_input(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:default_value} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add information label to GUI (cannot be edited)",
+	"prefix": "gui_add_info_label",
+	"context": "Global",
+	"body": [
+		"gui_add_info_label(${1:text} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add checkbox GUI element",
+	"prefix": "gui_add_check_box",
+	"context": "Global",
+	"body": [
+		"gui_add_check_box(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:is_checked} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add file saving GUI element (allowing user to browse a file for write access)",
+	"prefix": "gui_add_file_save",
+	"context": "Global",
+	"body": [
+		"gui_add_file_save(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:extension} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add file loading GUI element (allowing user to browse a file for read access)",
+	"prefix": "gui_add_file_load",
+	"context": "Global",
+	"body": [
+		"gui_add_file_load(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:extension} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add seperator GUI element",
+	"prefix": "gui_add_separator",
+	"context": "Global",
+	"body": [
+		"gui_add_separator(${1:title} $BLOCK_COMMENT_START string [default = \"\"] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add a new accordion tab GUI element (that can be expanded or collapsed). Regular GUI elements can be added in that tab.",
+	"prefix": "gui_add_new_tab",
+	"context": "Global",
+	"body": [
+		"gui_add_new_tab(${1:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:is_expanded} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"End the accordion tab GUI element that was previsouly created",
+	"prefix": "gui_end_tab",
+	"context": "Global",
+	"body": [
+		"gui_end_tab()"
+	]}
+	,
+	{"desc":"Add a new group of containers. containers group are different that tab in a sense that the selected container can be retrieved.",
+	"prefix": "gui_add_new_selectable_containers_group",
+	"context": "Global",
+	"body": [
+		"gui_add_new_selectable_containers_group(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"End the GUI container that was previously created",
+	"prefix": "gui_end_selectable_containers_group",
+	"context": "Global",
+	"body": [
+		"gui_end_selectable_containers_group()"
+	]}
+	,
+	{"desc":"Add a new container to a previously created container group. Regular GUI elements can be added in that container.",
+	"prefix": "gui_add_new_container",
+	"context": "Global",
+	"body": [
+		"gui_add_new_container(${1:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:is_selected} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"End the container that was previously created",
+	"prefix": "gui_end_container",
+	"context": "Global",
+	"body": [
+		"gui_end_container()"
+	]}
+	,
+	{"desc":"Add hidden GUI field (only used to pass variable to sub-decoders)",
+	"prefix": "gui_add_hidden_field",
+	"context": "Global",
+	"body": [
+		"gui_add_hidden_field(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:value} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Retrieve the value of a GUI element by its ID",
+	"prefix": "gui_get_value",
+	"context": "Global",
+	"body": [
+		"gui_get_value(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Set/change the value of a hidden field",
+	"prefix": "gui_set_hidden_field",
+	"context": "Global",
+	"body": [
+		"gui_set_hidden_field(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:value} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Open a file (knowing the GUI file load/save element ID)",
+	"prefix": "file_system_open",
+	"context": "Global",
+	"body": [
+		"file_system_open(${1:file_id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:mode} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Close a file that was previously open",
+	"prefix": "file_system_close",
+	"context": "Global",
+	"body": [
+		"file_system_close(${1:file_handle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Read the content of a file in binary format (returing an array of bytes)",
+	"prefix": "file_system_read_binary",
+	"context": "Global",
+	"body": [
+		"file_system_read_binary(${1:file_handle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Read the content of a file in ASCII format",
+	"prefix": "file_system_read_text",
+	"context": "Global",
+	"body": [
+		"file_system_read_text(${1:file_handle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:encoding} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Write to a file in binary format (write an array of bytes)",
+	"prefix": "file_system_write_binary",
+	"context": "Global",
+	"body": [
+		"file_system_write_binary(${1:file_handle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:data} $BLOCK_COMMENT_START int[] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Write to a file in ASCII format",
+	"prefix": "file_system_write_text",
+	"context": "Global",
+	"body": [
+		"file_system_write_text(${1:file_handle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:text} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:encoding} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Launches a low level decoder and get the result of decoding when its done. This is a blocking function.",
+	"prefix": "pre_decode",
+	"context": "Decoder",
+	"body": [
+		"pre_decode(${1:dec_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:resume} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END,",
+		"${3:timeout_ms} $BLOCK_COMMENT_START int [default = 0] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns true if the script is currently being run by another script",
+	"prefix": "is_pre_decoding",
+	"context": "Decoder",
+	"body": [
+		"is_pre_decoding()"
+	]}
+	,
+	{"desc":"Returns the total number of samples currently available (useful when decoding data on the fly)",
+	"prefix": "get_available_samples",
+	"context": "Decoder",
+	"body": [
+		"get_available_samples()"
+	]}
+	,
+	{"desc":"Reset the transition iterator for a given channel",
+	"prefix": "trs_reset",
+	"context": "Decoder",
+	"body": [
+		"trs_reset(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Positions the iterator at the nearest transition before a target sample",
+	"prefix": "trs_get_before",
+	"context": "Decoder",
+	"body": [
+		"trs_get_before(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:target_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the next transition",
+	"prefix": "trs_get_next",
+	"context": "Decoder",
+	"body": [
+		"trs_get_next(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the previous transition",
+	"prefix": "trs_get_previous",
+	"context": "Decoder",
+	"body": [
+		"trs_get_previous(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns true of the iterator did not reach the last available transition.",
+	"prefix": "trs_is_not_last",
+	"context": "Decoder",
+	"body": [
+		"trs_is_not_last(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Initializes the bit sampler",
+	"prefix": "bit_sampler_init",
+	"context": "Decoder",
+	"body": [
+		"bit_sampler_init(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:start_sample_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:samples_increment} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the value of the next bit",
+	"prefix": "bit_sampler_next",
+	"context": "Decoder",
+	"body": [
+		"bit_sampler_next(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the value of the word formed by the the next 'bits_per_word' bits. 'bits_per_word' can be 1 to 32 (bits_per_word is 8 if omitted).",
+	"prefix": "bit_sampler_get_word",
+	"context": "Decoder",
+	"body": [
+		"bit_sampler_get_word(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:start_sample_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:bit_sampler_increments} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${4:msb_first} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END,",
+		"${5:bits_per_word} $BLOCK_COMMENT_START int [default = 8] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Return the value of the synchronous word formed by the next 'bits_per_word' bits.",
+	"prefix": "sync_decode",
+	"context": "Decoder",
+	"body": [
+		"sync_decode(${1:clock_channel} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:data_channels} $BLOCK_COMMENT_START int[] $BLOCK_COMMENT_END,",
+		"${3:clock_start_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${4:clock_polarity} $BLOCK_COMMENT_START int [default = 1] $BLOCK_COMMENT_END,",
+		"${5:msb_first} $BLOCK_COMMENT_START bool [default = true] $BLOCK_COMMENT_END,",
+		"${6:bits_per_word} $BLOCK_COMMENT_START int [default = 8] $BLOCK_COMMENT_END,",
+		"${7:bits_interleaving} $BLOCK_COMMENT_START bool [default = false] $BLOCK_COMMENT_END,",
+		"${8:clk_skip} $BLOCK_COMMENT_START int [default = 0] $BLOCK_COMMENT_END,",
+		"${9:word_end_sample} $BLOCK_COMMENT_START int [default = -1] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Return the value of parallel data word composed of 'data_channels' array,",
+	"prefix": "get_parallel_word",
+	"context": "Decoder",
+	"body": [
+		"get_parallel_word(${1:clock_channel} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:data_channels} $BLOCK_COMMENT_START int[] $BLOCK_COMMENT_END,",
+		"${3:clock_start_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${4:clock_polarity} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"//#SNIPPETDESC#:Starts a new decoder item and returns 1 on success, error code otherwize.",
+	"prefix": "dec_item_new",
+	"context": "Decoder",
+	"body": [
+		"dec_item_new(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:start_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:end_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"//#SNIPPETDESC#:Ends the previously started decoder item",
+	"prefix": "dec_item_end",
+	"context": "Decoder",
+	"body": [
+		"dec_item_end()"
+	]}
+	,
+	{"desc":"Adds sample points to a decoder item",
+	"prefix": "dec_item_add_sample_point",
+	"context": "Decoder",
+	"body": [
+		"dec_item_add_sample_point(${1:sample_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:drawing} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add content to a decoder item",
+	"prefix": "dec_item_add_content",
+	"context": "Decoder",
+	"body": [
+		"dec_item_add_content(${1:content} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Mark this decoder item in a 'success' color",
+	"prefix": "dec_item_emphasize_success",
+	"context": "Decoder",
+	"body": [
+		"dec_item_emphasize_success()"
+	]}
+	,
+	{"desc":"Mark this decoder item in a 'warning' color",
+	"prefix": "dec_item_emphasize_warning",
+	"context": "Decoder",
+	"body": [
+		"dec_item_emphasize_warning()"
+	]}
+	,
+	{"desc":"Mark this decoder item in an 'error' color",
+	"prefix": "dec_item_emphasize_error",
+	"context": "Decoder",
+	"body": [
+		"dec_item_emphasize_error()"
+	]}
+	,
+	{"desc":"Add new byte to the HEX view",
+	"prefix": "hex_view_add_byte",
+	"context": "Decoder",
+	"body": [
+		"hex_view_add_byte(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:start_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:end_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${4:data_byte} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add new packet to the packet view",
+	"prefix": "packet_view_add_packet",
+	"context": "Decoder",
+	"body": [
+		"packet_view_add_packet(${1:root} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END,",
+		"${2:ch} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:start_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${4:end_sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${5:title} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${6:content} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${7:title_bg_html_color} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${8:content_bg_html_color} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the color of a channel, as it's defined in ScanaStudio workspacce.",
+	"prefix": "get_channel_color",
+	"context": "Decoder",
+	"body": [
+		"get_channel_color(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Create a new Virtual Analog Channel (VAC). If the channel already exists, it's cleared and it's parameters are replaced. vac_id must be a unique number for each channel.",
+	"prefix": "vac_create_channel",
+	"context": "Decoder",
+	"body": [
+		"vac_create_channel(${1:vac_id} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:unit} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${3:html_color} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${4:default_label} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Remove a VAC channel. If the channel does not exist, this function is ignored.",
+	"prefix": "vac_remove_channel",
+	"context": "Decoder",
+	"body": [
+		"vac_remove_channel(${1:vac_id} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Append a new sample to the Virtual Analog Channel (VAC) whose ID is vac_id. Value can be a decimal or floating point value.",
+	"prefix": "vac_append_sample",
+	"context": "Decoder",
+	"body": [
+		"vac_append_sample(${1:vac_id} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:sample} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${3:value} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Change the color the Virtual Analog Channel (VAC). Example HTML color is \"#FF0000\" for red.",
+	"prefix": "vac_set_color",
+	"context": "Decoder",
+	"body": [
+		"vac_set_color(${1:vac_id} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:html_color} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Change the horizontal size of the Virtual Analog Channel (VAC), which by default is 1. the size is expressed in number of slots. Each slot is equivalent to the size of standard logic channel. A VAC with a size of 2 would occupy the size of two logic channels. Minimum value is 1, maximum is 5.",
+	"prefix": "vac_set_size",
+	"context": "Decoder",
+	"body": [
+		"vac_set_size(${1:vac_id} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:size_factor} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Change the displayed unit the Virtual Analog Channel (VAC).",
+	"prefix": "vac_set_unit",
+	"context": "Decoder",
+	"body": [
+		"vac_set_unit(${1:vac_id} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:unit} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Configure a capable channel to output a clock",
+	"prefix": "builder_set_clock_output",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_set_clock_output(${1:clkout_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
+		"${2:enable} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END,",
+		"${3:freq} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Sets the number of times the pattern should be generated. Set to 0 for infinite looping.",
+	"prefix": "builder_set_repeat_count",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_set_repeat_count(${1:repeat_cycles} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Configure the IO for a particular channel",
+	"prefix": "builder_set_io",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_set_io(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:io_type} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Configure the IO for a particular channel",
+	"prefix": "builder_set_out_voltage",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_set_out_voltage(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:voltage_mv} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Sets the idle state for a particular channel",
+	"prefix": "builder_set_idle_state",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_set_idle_state(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,${2:val} $BLOCK_COMMENT_START bool $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Returns the sample rate used by the hardware device for generation",
+	"prefix": "builder_get_sample_rate",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_get_sample_rate()"
+	]}
+	,
+	{"desc":"Start generating this chuck of pattern data",
+	"prefix": "builder_start_chunk",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_start_chunk()"
+	]}
+	,
+	{"desc":"Gets the remaining memory for the chunk being build by the script (and not yet sent to device using builder_start_chunk() function)",
+	"prefix": "builder_get_remaining_trs",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_get_remaining_trs()"
+	]}
+	,
+	{"desc":"Gets the maximum number of transisitons that can be stored in hardware device internal memory",
+	"prefix": "builder_get_max_chunk_size",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_get_max_chunk_size()"
+	]}
+	,
+	{"desc":"Wait until the last pattern is sent and completely generated on the probes of the device.",
+	"prefix": "builder_wait_done",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_wait_done(${1:timeout_ms} $BLOCK_COMMENT_START int [default = 0xFFFFFFFF] $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Append new trigger step",
+	"prefix": "flexitrig_append",
+	"context": "Trigger sequence",
+	"body": [
+		"flexitrig_append(${1:step_description} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${2:t_min} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,",
+		"${3:t_max} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Print the trigger steps in ScanaStudio console (for debug purposes)",
+	"prefix": "flexitrig_print_steps",
+	"context": "Trigger sequence",
+	"body": [
+		"flexitrig_print_steps()"
+	]}
+	,
+	{"desc":"Get the value of a GUI item from the protocol decoder GUI.",
+	"prefix": "decoder_gui_get_value",
+	"context": "Trigger sequence",
+	"body": [
+		"decoder_gui_get_value(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Get the value of a GUI item from the flexitrig GUI.",
+	"prefix": "flexitrig_gui_get_value",
+	"context": "Trigger sequence",
+	"body": [
+		"flexitrig_gui_get_value(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+
+]
