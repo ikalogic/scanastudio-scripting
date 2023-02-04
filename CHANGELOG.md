@@ -2,6 +2,9 @@
 
 All notable changes to the "scanastudio-scripting" extension will be documented in this file.
 
+## [0.3.0]
+- Fix icon transparency
+
 ## [0.2.0]
 - Added icon to the manifest
 
