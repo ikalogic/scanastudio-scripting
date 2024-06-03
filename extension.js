@@ -15,8 +15,8 @@ function activate(context) {
 
     //"editor.suggest.showWords": false
 
-    vscode.workspace.getConfiguration()
-        .update('editor.suggest.showWords', false, vscode.ConfigurationTarget.Global);
+    // vscode.workspace.getConfiguration()
+    //     .update('editor.suggest.showWords', false, vscode.ConfigurationTarget.Global);
 
     var obj = JSON.parse(fs.readFileSync(context.extensionPath + '/resources/scanastudio.templates.json', 'utf8'));
     //console.log(obj);
