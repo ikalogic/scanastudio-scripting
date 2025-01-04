@@ -2,6 +2,12 @@
 
 All notable changes to the "scanastudio-scripting" extension will be documented in this file.
 
+## [0.6.0]
+- Update snippets
+
+## [0.5.0]
+- Disable unfriendly workspace configuration option
+
 ## [0.3.0]
 - Fix icon transparency
 

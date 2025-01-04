@@ -1,24 +1,24 @@
 [
 
-	{"desc":"Loads a builder object from another script",
+	{"desc":"// #SNIPPETDESC#: Loads a builder object from another script",
 	"prefix": "load_builder_object",
-	"context": "Signal builder",
+	"context": "Global",
 	"body": [
 		"load_builder_object(${1:script_file_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
 	]}
 	,
-	{"desc":"Add samples to the pattern or to the workspace",
+	{"desc":"// #SNIPPETDESC#: Add samples to the pattern or to the workspace",
 	"prefix": "builder_add_samples",
-	"context": "Signal builder",
+	"context": "Global",
 	"body": [
 		"builder_add_samples(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
 		"${2:logic_level} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
 		"${3:samples_count} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
 	]}
 	,
-	{"desc":"Adds cycles to the pattern or to the workspace (cycle = Logic High period followed by Logic Low period).",
+	{"desc":"// #SNIPPETDESC#: Adds cycles to the pattern or to the workspace (cycle = Logic High period followed by Logic Low period).",
 	"prefix": "builder_add_cycles",
-	"context": "Signal builder",
+	"context": "Global",
 	"body": [
 		"builder_add_cycles(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
 		"${2:duty_cycle} $BLOCK_COMMENT_START float $BLOCK_COMMENT_END,",
@@ -26,25 +26,25 @@
 		"${4:cycles_count} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
 	]}
 	,
-	{"desc":"Return the number of added (built) samples for a channel",
+	{"desc":"// #SNIPPETDESC#: Return the number of added (built) samples for a channel",
 	"prefix": "builder_get_samples_acc",
-	"context": "Signal builder",
+	"context": "Global",
 	"body": [
 		"builder_get_samples_acc(${1:channel_index} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
 	]}
 	,
-	{"desc":"Return the current sampling rate of the workspace",
+	{"desc":"// #SNIPPETDESC#: Return the current sampling rate of the workspace",
 	"prefix": "builder_get_sample_rate",
-	"context": "Signal builder",
+	"context": "Global",
 	"body": [
-		"builder_get_sample_rate()"
+		"builder_get_sample_rate(${1:#ADDSNIPPET#} $BLOCK_COMMENT_START // $BLOCK_COMMENT_END)"
 	]}
 	,
-	{"desc":"Return the maximum number of samples that can be built",
+	{"desc":"// #SNIPPETDESC#: Return the maximum number of samples that can be built",
 	"prefix": "builder_get_maximum_samples_count",
-	"context": "Signal builder",
+	"context": "Global",
 	"body": [
-		"builder_get_maximum_samples_count()"
+		"builder_get_maximum_samples_count(${1:#ADDSNIPPET#} $BLOCK_COMMENT_START // $BLOCK_COMMENT_END)"
 	]}
 	,
 	{"desc":"Returns true if the script should abort",
@@ -151,7 +151,8 @@
 	"body": [
 		"gui_add_ch_selector(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
 		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
-		"${3:new_channel_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+		"${3:new_channel_name} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
+		"${4:default_value} $BLOCK_COMMENT_START int [default = -1] $BLOCK_COMMENT_END)"
 	]}
 	,
 	{"desc":"Add engineering form input box GUI element (using units and prefixes, e.g. 15us or 10MHz)",
@@ -230,6 +231,13 @@
 		"gui_add_file_load(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
 		"${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
 		"${3:extension} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Add directory loading GUI element (allowing user to browse a directory for read/write access)",
+	"prefix": "gui_add_directory_path",
+	"context": "Global",
+	"body": [
+		"gui_add_directory_path(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:caption} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
 	]}
 	,
 	{"desc":"Add seperator GUI element",
@@ -344,6 +352,27 @@
 		"file_system_write_text(${1:file_handle} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END,",
 		"${2:text} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,",
 		"${3:encoding} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"include a *.js file into this file (without any modification or parsin)",
+	"prefix": "load_scipt",
+	"context": "Global",
+	"body": [
+		"load_scipt(${1:file_to_include} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Store a user key",
+	"prefix": "set_global_key",
+	"context": "Global",
+	"body": [
+		"set_global_key(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END,${2:value} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Retrieve the value of the stored key",
+	"prefix": "get_global_key",
+	"context": "Global",
+	"body": [
+		"get_global_key(${1:id} $BLOCK_COMMENT_START string $BLOCK_COMMENT_END)"
 	]}
 	,
 	{"desc":"Launches a low level decoder and get the result of decoding when its done. This is a blocking function.",
@@ -648,6 +677,41 @@
 	"context": "Pattern Generator",
 	"body": [
 		"builder_get_max_chunk_size()"
+	]}
+	,
+	{"desc":"Adds a sample on all channels, and hold that sample for given duration",
+	"prefix": "builder_add_step",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_add_step(${1:channels_data} $BLOCK_COMMENT_START int[] $BLOCK_COMMENT_END,${2:hold} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"Request the device to pause until resumed by the user",
+	"prefix": "builder_add_pause",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_add_pause()"
+	]}
+	,
+	{"desc":"Returns the current loop level",
+	"prefix": "builder_get_loop_level",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_get_loop_level()"
+	]}
+	,
+	{"desc":"start a new loop, with a given loop count (loop count = 0 for infinite loop)",
+	"prefix": "builder_loop_start",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_loop_start(${1:loop_count} $BLOCK_COMMENT_START int $BLOCK_COMMENT_END)"
+	]}
+	,
+	{"desc":"marks the end of a loop",
+	"prefix": "builder_loop_end",
+	"context": "Pattern Generator",
+	"body": [
+		"builder_loop_end()"
 	]}
 	,
 	{"desc":"Wait until the last pattern is sent and completely generated on the probes of the device.",
